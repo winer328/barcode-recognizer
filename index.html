@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- header begin -->
+
+
+    <!-- Google Tag Manager -->
+
+    <!-- End Google Tag Manager -->
+
+    <!-- icon begin -->
+    <!--
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="images/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    -->
+    <!-- icon end -->
+
+    <!-- <link rel="manifest" href="images/manifest.json" /> -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+
+
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-MmFGSHKWNFDZYlwAtfeY6ThYRrYajzX+v7G4KVORjlWAG0nLhv0ULnFETyWGeQiU"
+        crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    -->
+
+    <style>
+
+        @media print {
+            #footer .container
+            {
+                display:none;
+            }
+
+            #header .container
+            {
+                display:none;
+            }
+        }
+
+        a{
+            color: #7c943b;
+        }
+
+    </style>
+
+    <!-- header end -->
+
+    <script languange="JavaScript">
+        if (typeof module === 'object') {window.module = module; module = undefined;}
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <title>Barcode Reader</title>
+
+    <meta content="barcode reader, read barcode online, read barcode, online barcode reader, online qr code reader, qr code reader, qr reader, code 39 reader, ean barcode, ean barcode decoder, online barcode decoder, online qr code decoder" name="keywords" />
+    <meta content="online barcode reader and online barcode decoder. Decode QR Code, Code 39, Code 128, EAN barcodes from web camera online without software to install" name="description"/>
+
+
+    <!-- Required Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-vue.css" />
+
+    <!-- Required scripts -->
+    <script src="js/vue.min.js"></script>
+    <script src="js/vuex.min.js"></script>
+    <script src="js/polyfill.min.js"></script>
+    <script src="js/bootstrap-vue.js"></script>
+    <script src="js/es6-promise.auto.js"></script>
+    <script src="js/moment.min.js"></script>
+    <style>
+        .card-body {
+            font-size: 16px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-text {
+            width: 100%;
+        }
+
+        .text-wrap {
+            word-break: break-all;
+        }
+
+        #interactive.viewport,
+        #live_interactive.viewport,
+        #qrscan_area {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            position: relative;
+        }
+
+        #interactive.viewport canvas,
+        #live_interactive.viewport canvas,
+        #qrscan_area canvas,
+        video {
+            float: left;
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+        }
+
+        #interactive.viewport canvas.drawingBuffer,
+        #live_interactive.viewport canvas.drawingBuffer,
+        #qrscan_area canvas,
+        video.drawingBuffer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 320px;
+            height: auto;
+        }
+
+        @media (max-width: 500px) {
+
+            .overlay.scanner {
+                width: 320px;
+                height: 300px;
+                padding: 3px;
+                margin-top: -275px;
+                margin-left: -340px;
+                background-color: #FFF;
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+            .overlay.scanner > .header {
+                margin-bottom: 5px;
+            }
+
+            .overlay.scanner > .header h4, .overlay.scanner > .header .close {
+                line-height: 16px;
+            }
+
+            .overlay.scanner > .header .close {
+                height: 16px;
+                width: 16px;
+            }
+        }
+        tbody > tr > td:nth-child(3):before{
+            content: "X";
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- header body begin -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7ZP29" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+<!-- header body end -->
+
+
+
+
+<div id="app">
+    <div class="mt-5">
+
+        <div class="col-md-12">
+            <live-input></live-input>
+        </div>
+
+
+        <div v-if="savedCodes">
+            <div class="text-center font-weight-bold">Result
+                <b-link @click="cleanCodes" variant="warning" class="float-right m-2">Clear stock</b-link>
+            </div>
+            <div class="m-3 border clearfix">
+                <b-table class="text-wrap" small hover fixed :items="savedCodes" :fields="fields" >
+                    <span slot="code" slot-scope="data" v-html="data.value"></span>
+                </b-table>
+                <div class="float-right mr-2">
+                    <div class="float-left mr-2">
+                        <label>Total Count:</label>
+                        <strong>
+                            <span>x{{totalCount}}</span>
+                        </strong>
+                    </div>
+                    <div class="float-left">
+                        <label>Total Price:</label>
+                        <strong>{{totalPrice}}</strong>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script src="js/axios.min.js"></script>
+<script src="js/adapter-latest.js"></script>
+<script src="js/barcode-reader-lib-quagga.min.js"></script>
+<script src="js/barcode-reader-lib-jsQR.js"></script>
+<script src="js/barcode-reader-constants.js"></script>
+<script src="js/barcode-reader-file-input.js"></script>
+<script src="js/barcode-reader-live-input.js"></script>
+<script src="js/barcode-reader-app.js"></script>
+
+
+
+</body>
+<!-- footer begin -->
+<div class='container small'>
+    <class id="footer" class='footer'>
+
+
+        <div class='row'>&nbsp;</div>
+        <div class='row'>&nbsp;</div>
+
+        <div class='container'>
+            <div class='col-lg-12 col-md-12 small text-info'>
+                <!--SEO-FOOTER-->
+            </div>
+        </div>
+
+
+        <div class='container'>
+            <div class="row">
+                <hr/>
+            </div>
+
+
+
+
+
+            <!-- security info begin -->
+
+
+            <!-- security info end -->
+
+        </div>
+    </class>
+</div>
+<!-- footer end -->
+
+
+
+
+</html>
